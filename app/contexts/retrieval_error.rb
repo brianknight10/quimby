@@ -1,0 +1,2 @@
+class RetrievalError < StandardError
+end
