@@ -23,6 +23,8 @@ It's easiest to run Quimby with Docker. Simply run the container like this:
       -p 3000:3000 \
       brianknight10/quimby
 
+The Quimby image is stored in the [Docker Hub repository](https://hub.docker.com/r/brianknight10/quimby/)
+
 ## Development
 
 To develop, you'll first need to install [Ruby][https://www.ruby-lang.org/].
