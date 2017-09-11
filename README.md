@@ -1,15 +1,17 @@
 # Quimby
 
-![Travis CI](https://travis-ci.org/brianknight10/quimby.svg?branch=master)
+[![Travis CI](https://travis-ci.org/brianknight10/quimby.svg?branch=master)]()
 [![Docker Pulls](https://img.shields.io/docker/pulls/brianknight10/quimby.svg)]()
 
 A simple, secure, self-destructing message service, featuring [HashiCorp Vault](https://www.vaultproject.io/).
 
-![Chief Quimby](https://vignette.wikia.nocookie.net/inspectorgadget/images/f/f3/Quimby.png/revision/latest/scale-to-width-down/225?cb=20140311000839)
+<img src="https://vignette.wikia.nocookie.net/inspectorgadget/images/f/f3/Quimby.png/revision/latest/scale-to-width-down/225?cb=20140311000839" alt="Chief Quimby" style="height: 300px;"/>  <img src="quimby.png?raw=true" alt="Quimby" style="width: 300px;"/>
 
 ## What does it do?
 
-![Quimby](/quimby.png?raw=true)
+Quimby creates self-destructing secret messages for you to share with your colleagues. Using Vault's response wrapping, Quimby stores your secret in Vault's [cubbyhole](https://www.vaultproject.io/docs/secrets/cubbyhole/index.html) and wraps it with a one-time-use token that expires one hour after creation.
+
+After creating your secret message, Quimby gives you a URL to share with your colleague. The URL will show the secret message one time only. After accessing the secret, or after one hour, the secret is destroyed.
 
 ## Docker
 
