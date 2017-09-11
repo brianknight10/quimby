@@ -27,8 +27,9 @@ gem 'jbuilder', '~> 2.5'
 gem 'mini_racer'
 gem 'execjs'
 
-# Use Vault for secrets
-gem 'vault', '~> 0.10'
+# Use Faraday for HTTP
+gem 'faraday', '~> 0.13.1'
+gem 'faraday_middleware', '~> 0.12.2'
 # Support casting models
 gem 'casting', '~> 0.7'
 # Use Twitter Bootstrap
