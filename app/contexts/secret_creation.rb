@@ -3,19 +3,18 @@ class SecretCreation
 
   attr_writer :secret_source
 
-  def perform(text, token)
-    secret = new_secret(text, token)
+  def perform(text)
+    secret = new_secret(text)
 
-    secret.as(Storable) { secret.write }
+    secret.as(Wrappable) { secret.wrap }
     secret
   end
 
 private
 
-  def new_secret(text, token)
+  def new_secret(text)
     secret_source.call.tap do |s|
       s.text = text
-      s.token = token
     end
   end
 

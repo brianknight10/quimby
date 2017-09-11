@@ -1,9 +1,8 @@
 class SecretsController < ApplicationController
   def show
-    token = Token.new(client_token: params[:id])
     begin
-      @secret = SecretRetrieval.perform(token)
-    rescue RetrievalError
+      @secret = SecretRetrieval.perform(params[:id])
+    rescue
     end
   end
 
@@ -12,9 +11,8 @@ class SecretsController < ApplicationController
   end
 
   def create
-    token = TokenCreation.perform
-    @secret = SecretCreation.perform(secret_params['text'], token)
-    @secret.url = secret_url(@secret.token.client_token)
+    @secret = SecretCreation.perform(secret_params['text'])
+    @secret.url = secret_url(@secret.token)
     @secret
   end
 

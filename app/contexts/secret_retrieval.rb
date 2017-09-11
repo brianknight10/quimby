@@ -6,7 +6,7 @@ class SecretRetrieval
   def perform(token)
     secret = new_secret(token)
 
-    secret.as(Storable) { secret.read }
+    secret.as(Wrappable) { secret.unwrap }
     secret
   end
 
