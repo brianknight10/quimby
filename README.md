@@ -1,24 +1,42 @@
-# README
+# Quimby
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+![Travis CI](https://travis-ci.org/brianknight10/quimby.svg?branch=master)
+[![Docker Pulls](https://img.shields.io/docker/pulls/brianknight10/quimby.svg)]()
 
-Things you may want to cover:
+A simple, secure, self-destructing message service, featuring [HashiCorp Vault](https://www.vaultproject.io/).
 
-* Ruby version
+![Chief Quimby](https://vignette.wikia.nocookie.net/inspectorgadget/images/f/f3/Quimby.png/revision/latest/scale-to-width-down/225?cb=20140311000839)
 
-* System dependencies
+## What does it do?
 
-* Configuration
+![Quimby](/quimby.png?raw=true)
 
-* Database creation
+## Docker
 
-* Database initialization
+It's easiest to run Quimby with Docker. Simply run the container like this:
 
-* How to run the test suite
+    $ docker run \
+      -e "VAULT_ADDR=$VAULT_ADDR" \
+      -e "VAULT_TOKEN=$VAULT_TOKEN" \
+      -p 3000:3000 \
+      brianknight10/quimby
 
-* Services (job queues, cache servers, search engines, etc.)
+## Development
 
-* Deployment instructions
+To develop, you'll first need to install [Ruby][https://www.ruby-lang.org/].
 
-* ...
+Install the dependencies by running: `bundle install`.
+
+Running the Rails server with: `rails s`.
+
+Run tests with: `rake spec`
+
+## Contributing
+
+Contributions are welcome!
+
+1. Fork it
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create new Pull Request
