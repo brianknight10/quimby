@@ -2,7 +2,7 @@
 
 [![Travis CI](https://travis-ci.org/brianknight10/quimby.svg?branch=master)]()
 [![Docker Pulls](https://img.shields.io/docker/pulls/brianknight10/quimby.svg)]()
-[![Code Climate](https://img.shields.io/codeclimate/github/brianknight10/quimby.svg)]
+[![Code Climate](https://img.shields.io/codeclimate/github/brianknight10/quimby.svg)]()
 
 A simple, secure, self-destructing message service, featuring [HashiCorp Vault](https://www.vaultproject.io/).
 
