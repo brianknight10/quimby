@@ -11,7 +11,7 @@ module DCI
       end
     end
 
-    def characterize(*args, &block)
+    def characterize(*args, &_block)
       yield
       args.each do |item|
         item.uncast unless item.nil?

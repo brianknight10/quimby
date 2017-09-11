@@ -2,7 +2,7 @@ class SecretsController < ApplicationController
   def show
     begin
       @secret = SecretRetrieval.perform(params[:id])
-    rescue
+    rescue StandardError
     end
   end
 

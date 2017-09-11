@@ -5,13 +5,13 @@ namespace :docker do
   end
 
   desc 'Build Docker image'
-  task :build, [:version] => [:clean] do |t, args|
+  task :build, [:version] => [:clean] do |_t, args|
     args.with_defaults(version: 'latest')
     system "docker build -t 'brianknight10/quimby:#{ENV['version']}' ."
   end
 
   desc 'Push Docker image to the repository'
-  task :deploy, [:username, :password, :version] do |t, args|
+  task :deploy, [:username, :password, :version] do |_t, args|
     args.with_defaults(version: 'latest')
     Rake.application.invoke_task("docker:build[#{ENV['version']}]")
 
