@@ -1,9 +1,3 @@
 language: ruby
 rvm:
   - 2.4.1
-
-after_success:
-  - if [ "$TRAVIS_BRANCH" == "master" ]; then
-    docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
-    docker push brianknight10/quimby;
-    fi
