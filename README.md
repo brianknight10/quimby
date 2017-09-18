@@ -28,7 +28,7 @@ The Quimby image is stored in the [Docker Hub repository](https://hub.docker.com
 
 ## Development
 
-To develop, you'll first need to install [Ruby][https://www.ruby-lang.org/].
+To develop, you'll first need to install [Ruby](https://www.ruby-lang.org/).
 
 Install the dependencies by running: `bundle install`.
 
