@@ -1,2 +1,0 @@
-class RetrievalError < StandardError
-end

@@ -1,0 +1,2 @@
+class VaultError < StandardError
+end
