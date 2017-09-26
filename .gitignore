@@ -22,3 +22,6 @@
 /.vagrant
 
 Gemfile.lock
+
+# Ignore precompiled assets
+/public/assets/**

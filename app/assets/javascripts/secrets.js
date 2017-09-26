@@ -13,4 +13,7 @@ function handleFileSelect(evt) {
     reader.readAsText(f);
   }
 
-document.getElementById('secret_file').addEventListener('change', handleFileSelect, false);
+var sf = document.getElementById('secret_file');
+if(sf) {
+  sf.addEventListener('change', handleFileSelect, false);
+}
