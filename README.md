@@ -6,7 +6,7 @@
 
 A simple, secure, self-destructing message service, featuring [HashiCorp Vault](https://www.vaultproject.io/).
 
-<img src="https://vignette.wikia.nocookie.net/inspectorgadget/images/f/f3/Quimby.png/revision/latest/scale-to-width-down/225?cb=20140311000839" alt="Chief Quimby" style="height: 300px;"/>  <img src="quimby.png?raw=true" alt="Quimby" style="width: 300px;"/>
+<img src="https://vignette.wikia.nocookie.net/inspectorgadget/images/f/f3/Quimby.png/revision/latest/scale-to-width-down/225?cb=20140311000839" alt="Chief Quimby" height="300px"/>  <img src="quimby.png?raw=true" alt="Quimby" width="300px" />
 
 ## What does it do?
 
