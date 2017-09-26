@@ -14,7 +14,7 @@ RSpec.describe SecretsController, type: :controller do
     end
 
     it "does not raise errors" do
-      SecretRetrieval.expects(:perform).raises(RetrievalError)
+      SecretRetrieval.expects(:perform).raises(VaultError)
 
       get :show, { params: { id: 'test-token' } }
       expect(response).to have_http_status(:success)
