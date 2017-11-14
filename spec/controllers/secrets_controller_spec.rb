@@ -2,7 +2,9 @@ require 'rails_helper'
 
 RSpec.describe SecretsController, type: :controller do
   before do
-    @secret = FactoryGirl.build(:secret)
+    @secret = Secret.new(text: 'secret',
+                url: nil,
+                token: SecureRandom.urlsafe_base64)
   end
 
   describe "GET #show" do
