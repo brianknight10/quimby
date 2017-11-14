@@ -1,0 +1,18 @@
+version: "3.2"
+services:
+  quimby:
+    build: .
+    env_file: .env
+    environment:
+      VAULT_ADDR: http://172.17.0.1:8200
+    links:
+      - vault
+    ports:
+      - 3000:3000
+  vault:
+    cap_add:
+      - IPC_LOCK
+    env_file: .env
+    image: vault:latest
+    ports:
+      - 8200:8200
