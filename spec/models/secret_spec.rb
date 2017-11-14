@@ -1,7 +1,11 @@
 require 'rails_helper'
 
 describe Secret do
-  before { @secret = FactoryGirl.build(:secret) }
+  before do
+    @secret = Secret.new(text: 'secret',
+                url: nil,
+                token: SecureRandom.urlsafe_base64)
+  end
 
   subject { @secret }
 
