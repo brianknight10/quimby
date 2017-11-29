@@ -1,18 +1,24 @@
-FROM ruby:2.4
+FROM alpine:3.4
 
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
+RUN apk update && apk --update add ruby ruby-irb ruby-json ruby-rake \  
+    ruby-bundler ruby-bigdecimal ruby-io-console libstdc++ tzdata nodejs
 
-ENV RAILS_ENV production
-ENV RAILS_SERVE_STATIC_FILES true
-ENV RAILS_LOG_TO_STDOUT true
+ADD Gemfile /app/  
+ADD Gemfile.lock /app/
 
-COPY Gemfile /usr/src/app/
-COPY Gemfile.lock /usr/src/app/
-RUN bundle config --global frozen 1
-RUN bundle install --without development test
+RUN apk --update add --virtual build-dependencies build-base ruby-dev \
+    openssl-dev libc-dev linux-headers libffi-dev ca-certificates && \
+    cd /app ; bundle install --without development test
 
-COPY . /usr/src/app
+ADD . /app  
+RUN chown -R nobody:nogroup /app  
+USER nobody
+
+ENV RAILS_ENV=production \
+    RAILS_SERVE_STATIC_FILES=true \
+    RAILS_LOG_TO_STDOUT=true
+
+WORKDIR /app
 RUN bundle exec rake assets:precompile
 
 EXPOSE 3000
