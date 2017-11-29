@@ -28,7 +28,6 @@ gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 # Javascript runtimes
-gem 'mini_racer'
 gem 'execjs'
 
 # Use Faraday for HTTP
@@ -47,6 +46,7 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'rspec-rails', '~> 3.6'
   gem 'mocha'
+  gem 'shoulda-matchers', '~> 3.1'
 end
 
 group :development do
@@ -56,10 +56,6 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-end
-
-group :test do
-  gem 'shoulda-matchers', git: 'https://github.com/thoughtbot/shoulda-matchers.git', branch: 'rails-5'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
