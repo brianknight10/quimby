@@ -12,6 +12,7 @@ describe Secret do
   it { should respond_to(:token) }
   it { should respond_to(:url) }
   it { should respond_to(:text) }
+  it { should respond_to(:ttl) }
 
   context 'when communicating with Vault' do
     describe 'and wrapping a secret' do
