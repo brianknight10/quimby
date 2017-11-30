@@ -6,7 +6,7 @@ module Wrappable
       req.url '/v1/sys/wrapping/wrap'
       req.headers['Content-Type'] = 'application/json'
       req.headers['X-Vault-Token'] = ENV['VAULT_TOKEN']
-      req.headers['X-Vault-Wrap-TTL'] = '3600'
+      req.headers['X-Vault-Wrap-TTL'] = "#{ttl}"
       req.body = "{ \"secret\": \"#{Base64.strict_encode64(text)}\" }"
     end
     self.token = response.body['wrap_info']['token']

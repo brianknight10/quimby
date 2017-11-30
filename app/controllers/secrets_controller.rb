@@ -11,7 +11,7 @@ class SecretsController < ApplicationController
   end
 
   def create
-    @secret = SecretCreation.perform(secret_params['text'])
+    @secret = SecretCreation.perform(secret_params['text'], secret_params['ttl'])
     @secret.url = secret_url(@secret.token)
     @secret
   end
@@ -19,6 +19,6 @@ class SecretsController < ApplicationController
 private
 
   def secret_params
-    params.require(:secret).permit(:text)
+    params.require(:secret).permit(:text, :ttl)
   end
 end

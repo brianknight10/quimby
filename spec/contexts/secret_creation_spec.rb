@@ -13,8 +13,16 @@ describe SecretCreation do
 
     it 'sets the token' do
       secret = 'test token'
-      result = context.perform(secret)
+      ttl = 3600
+      result = context.perform(secret, ttl)
       expect(result.text).to eq(secret)
+    end
+
+    it 'sets the ttl' do
+      secret = 'test token'
+      ttl = 21600
+      result = context.perform(secret, ttl)
+      expect(result.ttl).to eq(ttl)
     end
   end
 end
