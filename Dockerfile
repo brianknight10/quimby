@@ -1,4 +1,4 @@
-FROM alpine:3.4
+FROM alpine:3.10
 
 RUN apk update && apk --update add ruby ruby-irb ruby-json ruby-rake \  
     ruby-bundler ruby-bigdecimal ruby-io-console libstdc++ tzdata nodejs
@@ -7,8 +7,10 @@ ADD Gemfile /app/
 ADD Gemfile.lock /app/
 
 RUN apk --update add --virtual build-dependencies build-base ruby-dev \
-    openssl-dev libc-dev linux-headers libffi-dev ca-certificates && \
+    openssl-dev libc-dev linux-headers libffi-dev ca-certificates zlib-dev && \
     cd /app ; bundle install --without development test
+
+RUN rm -rf /var/cache/apk/*
 
 ADD . /app  
 RUN chown -R nobody:nogroup /app  
