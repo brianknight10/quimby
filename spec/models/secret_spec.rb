@@ -5,6 +5,15 @@ describe Secret do
     @secret = Secret.new(text: 'secret',
                 url: nil,
                 token: SecureRandom.urlsafe_base64)
+
+    @host = 'https://vault.test.com'
+    @token = 'ratsafraz'
+    ENV['VAULT_ADDR'] = @host
+    ENV['VAULT_TOKEN'] = @token
+  end
+
+  after do
+    WebMock.reset!
   end
 
   subject { @secret }
@@ -16,30 +25,31 @@ describe Secret do
 
   context 'when communicating with Vault' do
     describe 'and wrapping a secret' do
+      before do
+        secret_body = "{ \"secret\": \"#{Base64.strict_encode64(@secret.text)}\" }"
+
+        @stub = stub_request(:post, "#{@host}/v1/sys/wrapping/wrap")
+          .with(body: secret_body,
+                headers: {
+                  'Accept' => '*/*',
+                  'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+                  'Content-Type' => 'application/json',
+                  'X-Vault-Token' => @token,
+                  'X-Vault-Wrap-Ttl' => '3600',
+                  'User-Agent' => 'Faraday v0.17.0',
+                } )
+          .to_return(status: 200, 
+                     body: wrap_response, 
+                     headers: { 'Content-Type' => 'application/json' })
+      end
+
       it 'creates a valid post to Vault' do
-        request = mock('request')
-        headers = mock('headers')
-        secret = "{ \"secret\": \"#{Base64.strict_encode64(@secret.text)}\" }"
-
-        request.expects(:url).with('/v1/sys/wrapping/wrap')
-        request.expects(:headers).returns(headers).times(3)
-        request.expects(:body=).returns(secret)
-
-        headers.expects(:[]=).with('Content-Type', 'application/json')
-        headers.expects(:[]=).with('X-Vault-Token', nil)
-        headers.expects(:[]=).with('X-Vault-Wrap-TTL', '3600')
-
-        Faraday::Connection.any_instance
-          .expects(:post)
-          .yields(request)
-          .returns(wrap_response)
-
         @secret.as(Wrappable) { @secret.wrap }
+
+        expect(@stub).to have_been_requested
       end
 
       it 'sets the token' do
-        Faraday::Connection.any_instance.stubs(:post).returns(wrap_response)
-
         @secret.as(Wrappable) { @secret.wrap }
 
         expect(@secret.token).to be_eql('test')
@@ -47,29 +57,30 @@ describe Secret do
     end
 
     describe 'and unwrapping a secret' do
+      before do
+        token_body = "{ \"token\": \"#{@secret.token}\" }"
+
+        @stub = stub_request(:post, "#{@host}/v1/sys/wrapping/unwrap")
+          .with(body: token_body,
+                headers: {
+                  'Accept' => '*/*',
+                  'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+                  'Content-Type' => 'application/json',
+                  'X-Vault-Token' => @token,
+                  'User-Agent' => 'Faraday v0.17.0',
+                } )
+          .to_return(status: 200, 
+                     body: unwrap_response, 
+                     headers: { 'Content-Type' => 'application/json' })
+      end
+
       it 'creates a valid post to Vault' do
-        request = mock('request')
-        headers = mock('headers')
-        body = "{ \"token\": \"#{@secret.token}\" }"
-
-        request.expects(:url).with('/v1/sys/wrapping/unwrap')
-        request.expects(:headers).returns(headers).times(2)
-        request.expects(:body=).returns(body)
-
-        headers.expects(:[]=).with('Content-Type', 'application/json')
-        headers.expects(:[]=).with('X-Vault-Token', nil)
-
-        Faraday::Connection.any_instance
-          .expects(:post)
-          .yields(request)
-          .returns(unwrap_response)
-
         @secret.as(Wrappable) { @secret.unwrap }
+
+        expect(@stub).to have_been_requested
       end
 
       it 'sets the secret text' do
-        Faraday::Connection.any_instance.stubs(:post).returns(unwrap_response)
-
         @secret.as(Wrappable) { @secret.unwrap }
 
         expect(@secret.text).to be_eql('test')
@@ -79,9 +90,9 @@ describe Secret do
 end
 
 def unwrap_response
-  OpenStruct.new({ body: { 'data' => { 'secret' => 'dGVzdA==' } } })
+  { 'data' => { 'secret' => 'dGVzdA==' } }.to_json
 end
 
 def wrap_response
-  OpenStruct.new({ body: { 'wrap_info' => { 'token' => 'test' } } })
+  { 'wrap_info' => { 'token' => 'test' } }.to_json
 end
