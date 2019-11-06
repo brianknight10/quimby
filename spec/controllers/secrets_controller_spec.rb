@@ -11,14 +11,14 @@ RSpec.describe SecretsController, type: :controller do
     it "returns http success" do
       SecretRetrieval.expects(:perform).returns(@secret)
 
-      get :show, { params: { id: 'test-token' } }
+      get :show, params: { id: 'test-token' }
       expect(response).to have_http_status(:success)
     end
 
     it "does not raise errors" do
       SecretRetrieval.expects(:perform).raises(VaultError)
 
-      get :show, { params: { id: 'test-token' } }
+      get :show, params: { id: 'test-token' }
       expect(response).to have_http_status(:success)
     end
   end
@@ -36,12 +36,12 @@ RSpec.describe SecretsController, type: :controller do
     end
 
     it "returns http success" do
-      post :create, { params: { secret: { text: 'test' } } }
+      post :create, params: { secret: { text: 'test' } }
       expect(response).to have_http_status(:success)
     end
 
     it "returns a valid URL" do
-      post :create, { params: { secret: { text: 'test' } } }
+      post :create, params: { secret: { text: 'test' } }
       expect(@secret.url).to eq("http://test.host/secrets/#{@secret.token}")
     end
   end

@@ -2,11 +2,11 @@
 
 [![Travis CI](https://travis-ci.org/brianknight10/quimby.svg?branch=master)]()
 [![Docker Pulls](https://img.shields.io/docker/pulls/brianknight10/quimby.svg)]()
-[![Code Climate](https://img.shields.io/codeclimate/github/brianknight10/quimby.svg)]()
+[![Maintainability](https://api.codeclimate.com/v1/badges/b994bc769f6c3a18daed/maintainability)](https://codeclimate.com/github/brianknight10/quimby/maintainability)
 
 A simple, secure, self-destructing message service, featuring [HashiCorp Vault](https://www.vaultproject.io/).
 
-<img src="https://vignette.wikia.nocookie.net/inspectorgadget/images/f/f3/Quimby.png/revision/latest/scale-to-width-down/225?cb=20140311000839" alt="Chief Quimby" height="300px"/>  <img src="quimby.png?raw=true" alt="Quimby" width="300px" />
+<img src="chief.png?raw=true" alt="Chief Quimby" height="300px"/>  <img src="quimby.png?raw=true" alt="Quimby" width="300px" />
 
 ## What does it do?
 
