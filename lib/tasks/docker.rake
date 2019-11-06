@@ -7,6 +7,9 @@ namespace :docker do
   desc 'Build Docker image'
   task :build, [:version] => [:clean] do |_t, args|
     args.with_defaults(version: 'latest')
+    Rake.application.invoke_task('assets:clobber')
+    Rake.application.invoke_task('assets:precompile')
+
     system "docker build -t 'brianknight10/quimby:#{args[:version]}' ."
   end
 

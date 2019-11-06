@@ -21,7 +21,6 @@ ENV RAILS_ENV=production \
     RAILS_LOG_TO_STDOUT=true
 
 WORKDIR /app
-RUN bundle exec rake assets:precompile
 
 EXPOSE 3000
 CMD ["rails", "server", "-b", "0.0.0.0"]
