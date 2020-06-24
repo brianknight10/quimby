@@ -36,7 +36,7 @@ describe Secret do
                   'Content-Type' => 'application/json',
                   'X-Vault-Token' => @token,
                   'X-Vault-Wrap-Ttl' => '3600',
-                  'User-Agent' => 'Faraday v0.17.0',
+                  'User-Agent' => 'Faraday v1.0.1',
                 } )
           .to_return(status: 200, 
                      body: wrap_response, 
@@ -67,7 +67,7 @@ describe Secret do
                   'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
                   'Content-Type' => 'application/json',
                   'X-Vault-Token' => @token,
-                  'User-Agent' => 'Faraday v0.17.0',
+                  'User-Agent' => 'Faraday v1.0.1',
                 } )
           .to_return(status: 200, 
                      body: unwrap_response, 
