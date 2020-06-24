@@ -7,11 +7,11 @@ end
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 6.0.1'
+gem 'rails', '~> 6.0.3'
 # Use Puma as the app server
 gem 'puma', '~> 4.3'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
+gem 'sassc'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
@@ -33,8 +33,8 @@ gem 'execjs'
 gem 'webpacker'
 
 # Use Faraday for HTTP
-gem 'faraday', '~> 0.17.0'
-gem 'faraday_middleware', '~> 0.13.1'
+gem 'faraday', '~> 1.0'
+gem 'faraday_middleware', '~> 1.0'
 # Support casting models
 gem 'casting', '~> 0.7'
 # Use Twitter Bootstrap
@@ -46,9 +46,9 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
-  gem 'rspec-rails', '~> 4.0.0.beta3'
+  gem 'rspec-rails', '~> 4.0'
   gem 'mocha'
-  gem 'shoulda-matchers', '~> 4.1'
+  gem 'shoulda-matchers', '~> 4.3'
   gem 'webmock'
 end
 
@@ -60,6 +60,3 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
-
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
