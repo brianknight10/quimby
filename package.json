@@ -2,10 +2,10 @@
   "name": "quimby",
   "private": true,
   "dependencies": {
-    "@rails/webpacker": "^5.2.1"
+    "@rails/webpacker": "^5.4.0"
   },
   "devDependencies": {
-    "webpack": "^4.43.0",
+    "webpack": "^5.40.0",
     "webpack-dev-server": "^3.11.2"
   }
 }
